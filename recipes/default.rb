@@ -19,3 +19,8 @@
 
 resources("template[/etc/httpd/sites-available/nagios3.conf]").cookbook("rhel-nagios")
 resources("template[/etc/nagios/nagios.cfg]").cookbook("rhel-nagios")
+
+file "/etc/httpd/conf.d/nagios.conf" do
+  action :delete
+  notifies :reload, "service[apache2]"
+end
