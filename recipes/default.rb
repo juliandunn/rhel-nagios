@@ -19,7 +19,7 @@
 
 include_recipe "apache2::mod_cgi"
 
-resources("template[/etc/httpd/sites-available/nagios3.conf]").cookbook("rhel-nagios")
+resources("template[/etc/httpd/sites-available/#{node['nagios']['server']['vname']}.conf]").cookbook("rhel-nagios")
 resources("template[/etc/nagios/nagios.cfg]").cookbook("rhel-nagios")
 
 file "/etc/httpd/conf.d/nagios.conf" do
