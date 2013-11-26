@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "apache2::mod_cgi"
+
 resources("template[/etc/httpd/sites-available/nagios3.conf]").cookbook("rhel-nagios")
 resources("template[/etc/nagios/nagios.cfg]").cookbook("rhel-nagios")
 
