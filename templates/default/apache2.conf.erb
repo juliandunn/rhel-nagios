@@ -12,7 +12,12 @@
   CustomLog       <%= node['apache']['log_dir'] %>/nagios_access.log combined
   ErrorLog        <%= node['apache']['log_dir'] %>/nagios_error.log
 
-  ScriptAlias /<%= node['nagios']['server']['name'] %>/cgi-bin /usr/lib64/nagios/cgi-bin
+  ScriptAlias /cgi-bin/<%= node['nagios']['server']['vname'] %> /usr/lib64/<%= node['nagios']['server']['vname'] %>/cgi-bin
+  ScriptAlias /<%= node['nagios']['server']['vname'] %>/cgi-bin /usr/lib64/<%= node['nagios']['server']['vname'] %>/cgi-bin
+
+  Alias /stylesheets /etc/<%= node['nagios']['docroot'] %>/stylesheets
+  Alias /<%= node['nagios']['server']['vname'] %>/stylesheets <%= node['nagios']['docroot'] %>/stylesheets
+  Alias /<%= node['nagios']['server']['vname'] %> <%= node['nagios']['docroot'] %>
 
   <% if @https -%>
   SSLEngine On
